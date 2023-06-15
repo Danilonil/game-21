@@ -1,3 +1,4 @@
 ideia.txt
 venv
-*.vscode
+.vscode
+r.txt
