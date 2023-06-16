@@ -1,23 +1,19 @@
 from _jogo_classes import *
-import pygame
-from pygame.locals import *
 from sys import exit
-import os 
-from random import randint
 
-with open('r.txt', 'r') as arquivo:
+with open(resource_path('r.txt'), 'r') as arquivo:
     record = arquivo.read()
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 pygame.init() #iniciar funções do pygame
-font_p = pygame.font.Font("font/04B_30__.TTF",18)
-font_m = pygame.font.Font("font/04B_30__.TTF",30)
-font_g = pygame.font.Font("font/04B_30__.TTF",70)
 
 pygame.display.set_caption('21.IO  --  versão 1.0') #definir nome da aba
 
 tela = pygame.display.set_mode((largura_tela, altura_tela)) #definir tamanho da tela
 relogio = pygame.time.Clock() #definir relogio
+font_p = pygame.font.Font(resource_path("font/04B_30__.TTF"),18)
+font_m = pygame.font.Font(resource_path("font/04B_30__.TTF"),30)
+font_g = pygame.font.Font(resource_path("font/04B_30__.TTF"),70)
 
 while True:
     
@@ -212,7 +208,7 @@ while True:
         txt_record = font_m.render(f' RECORD: {record} ', True, (0,0,50))
         if vitorias > int(record):
             record = vitorias
-            with open('r.txt', 'w') as arquivo:
+            with open(resource_path('r.txt'), 'w') as arquivo:
                 arquivo.write(str(record))
                 
         tela.blit(txt_record, (largura_tela/2 - 138, altura_tela/2 - 250))

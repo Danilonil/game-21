@@ -1,5 +1,19 @@
 import pygame
+from pygame.locals import *
 from random import shuffle, randint
+import sys
+import os
+
+# função para usar onefile do pyinstaller com img-audio-font 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 
 largura_tela = 1080
 altura_tela = 720
@@ -17,7 +31,7 @@ tela_placar = pygame.sprite.Group()
 
 #-----------------------------------------------------------------------------
 
-sprite_sheet_tela_escolha = pygame.image.load('img/escolha333x250.png')
+sprite_sheet_tela_escolha = pygame.image.load(resource_path('img/escolha333x250.png'))
 
 class TelaEscolha(pygame.sprite.Sprite):
     def __init__(self):
@@ -30,7 +44,7 @@ tela_escolha = TelaEscolha()
 
 #-----------------------------------------------------------------------------
 
-sprite_sheet_caixa_texto = pygame.image.load('img/caixatexto200x200.png')
+sprite_sheet_caixa_texto = pygame.image.load(resource_path('img/caixatexto200x200.png'))
 
 class CaixaTexto(pygame.sprite.Sprite):
     def __init__(self):
@@ -43,7 +57,7 @@ caixa_texto = CaixaTexto()
 
 #-----------------------------------------------------------------------------
 
-sprite_sheet_especial = pygame.image.load('img/especial88x124.png')
+sprite_sheet_especial = pygame.image.load(resource_path('img/especial88x124.png'))
 
 class Especial(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -69,7 +83,7 @@ for i in range(8):
         
 #-----------------------------------------------------------------------------
 
-sprite_sheet_cartas = pygame.image.load('img/cartas88x124.png')
+sprite_sheet_cartas = pygame.image.load(resource_path('img/cartas88x124.png'))
 
 class Cartas(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -103,7 +117,7 @@ shuffle(baralho)
 
 #-----------------------------------------------------------------------------
 
-sprite_sheet_botao_compra = pygame.image.load('img/baralho88x140.png')
+sprite_sheet_botao_compra = pygame.image.load(resource_path('img/baralho88x140.png'))
 
 class BotaoCompra(pygame.sprite.Sprite):
     def __init__(self):
@@ -151,7 +165,7 @@ todas_sprites.add(botao_compra)
 
 #-----------------------------------------------------------------------------
 
-sprite_sheet_botao_parei = pygame.image.load('img/Explosion384x384.png')
+sprite_sheet_botao_parei = pygame.image.load(resource_path('img/Explosion384x384.png'))
 
 class BotaoParei(pygame.sprite.Sprite):
     def __init__(self):
@@ -290,12 +304,12 @@ class Robo():
             if self.parou == False: 
                 if len(mao_robo) > 1:
                     n = randint(1, 3)
-                    fala = pygame.mixer.Sound(f'audio/fala_{str(n)}.mp3')
+                    fala = pygame.mixer.Sound(resource_path(f'audio/fala_{str(n)}.mp3'))
                     fala.play()
                     self.duracao_fala = int((pygame.mixer.Sound.get_length(fala))) + 0.2
 
             elif self.parou == True:
-                fala = pygame.mixer.Sound('audio/parei.mp3')
+                fala = pygame.mixer.Sound(resource_path('audio/parei.mp3'))
                 fala.play()
 
     def comprar(self): 
@@ -327,7 +341,7 @@ robo = Robo()
 
 #-----------------------------------------------------------------------------
 
-sprite_sheet_acento = pygame.image.load('img/acento.png')
+sprite_sheet_acento = pygame.image.load(resource_path('img/acento.png'))
 
 class Acento(pygame.sprite.Sprite):
     def __init__(self):
@@ -342,7 +356,7 @@ tela_placar.add(acento)
 
 #-----------------------------------------------------------------------------
 
-sprite_sheet_placar = pygame.image.load('img/win_lose213x222.png')
+sprite_sheet_placar = pygame.image.load(resource_path('img/win_lose213x222.png'))
 
 class PlacarFinal(pygame.sprite.Sprite):
     def __init__(self):
@@ -381,7 +395,7 @@ tela_placar.add(placar)
 
 #-----------------------------------------------------------------------------
 
-sprite_sheet_play = pygame.image.load('img/play195x80.png')
+sprite_sheet_play = pygame.image.load(resource_path('img/play195x80.png'))
 
 class Play(pygame.sprite.Sprite):
     def __init__(self):
